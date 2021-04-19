@@ -25,11 +25,11 @@ object HWDataSet {
     data
         .filter(x => x.trip_distance != 0)
         .groupBy(col("trip_distance"))
-        .agg(count(data.col("trip_distance")),
-          avg(data.col("trip_distance")),
-          stddev_pop(data.col("trip_distance")),
-          min(data.col("trip_distance")),
-          max(data.col("trip_distance")))
+        .agg(count(data.col("trip_distance")).alias("cnt_trip"),
+          round(avg(data.col("trip_distance")),2).alias("avg_distance"),
+          stddev_pop(data.col("trip_distance")).alias("stddev_pop_dist"),
+          min(data.col("trip_distance")).alias("min_distance"),
+          max(data.col("trip_distance")).alias("max_distance"))
         .orderBy(col("trip_distance"))
   }
 

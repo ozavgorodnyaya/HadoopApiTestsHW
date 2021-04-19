@@ -4,7 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import org.scalatest.flatspec.AnyFlatSpec
 
-class RDDApiUnitTestTest extends AnyFlatSpec {
+class RDDApiUnitTest extends AnyFlatSpec {
 
   implicit val spark = SparkSession.builder()
     .config("spark.master", "local")
