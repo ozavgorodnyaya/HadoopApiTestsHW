@@ -24,13 +24,13 @@ object HWDataSet {
   def processTaxiData(data: Dataset[TaxiRide]): DataFrame = {
     data
         .filter(x => x.trip_distance != 0)
-        .groupBy(col("trip_distance"))
+        .groupBy(col("passenger_count"))
         .agg(count(data.col("trip_distance")).alias("cnt_trip"),
           round(avg(data.col("trip_distance")),2).alias("avg_distance"),
-          stddev_pop(data.col("trip_distance")).alias("stddev_pop_dist"),
+          round(stddev_pop(data.col("trip_distance")),2).alias("stddev_pop_dist"),
           min(data.col("trip_distance")).alias("min_distance"),
           max(data.col("trip_distance")).alias("max_distance"))
-        .orderBy(col("trip_distance"))
+        .orderBy(col("passenger_count"))
   }
 
     def writeToPostgre(driver: String, url: String,
