@@ -11,16 +11,17 @@ class DSApiUnitTest extends SharedSparkSession {
 
     val result: DataFrame = processTaxiData(taxiDS)
 
-//    checkAnswer(
-//      result,
-//      Row("passenger_count", 0, "cnt_trip", 2208, "avg_distance", 2.46, "stddev_pop_dist", 3.18,
-//      "min_distance", 0.1, "max_distance", 37.4) ::
-//      Row("passenger_count", 1, "cnt_trip", 241386, "avg_distance", 2.7, "stddev_pop_dist", 3.45,
-//      "min_distance", 0.01, "max_distance", 66) ::
-//      Row("passenger_count", 2, "cnt_trip", 44265, "avg_distance", 2.85, "stddev_pop_dist", 3.65,
-//      "min_distance", 0.01, "max_distance", 53.5)
-//        :: Nil
-//    )
+    checkAnswer(
+      result,
+      Row(0,2208,2.46,3.18,0.1,37.4) ::
+      Row(1,241386,2.7,3.45,0.01,66.0) ::
+      Row(2,44265,2.85,3.65,0.01,53.5) ::
+      Row(3,11839,2.85,3.66,0.01,51.6) ::
+      Row(4,5153,2.96,3.78,0.01,46.3) ::
+      Row(5,15667,2.8,3.52,0.01,49.95) ::
+      Row(6,9505,2.72,3.45,0.01,31.25)
+        :: Nil
+    )
 
   }
 }
